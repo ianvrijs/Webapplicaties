@@ -4,7 +4,7 @@ global $view;
 global $router;
 
 require('config.php');
-require(__DIR__ . '/resources/bootstrap/bootstrap.php');
+require(__DIR__ . '/app/bootstrap.php');
 require(__ROOT__ . '/routes/routes.php');
 
 

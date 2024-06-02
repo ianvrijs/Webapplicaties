@@ -1,5 +1,5 @@
 <?php
-namespace requests;
+namespace app\requests;
 
 class Response
 {

@@ -1,6 +1,7 @@
+
 <?php
 
-//require('Autoload.class.php');
+//require('Autoload.php');
 //
 //require('../resources/views/viewLoader.php');
 //require('../resources/views/View.php');

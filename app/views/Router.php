@@ -1,5 +1,5 @@
 <?php
-namespace resources\views;
+namespace app\views;
 $request = $_SERVER['REQUEST_URI'];
 
 class Router{

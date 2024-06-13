@@ -1,14 +1,16 @@
 <?php
-GLOBAL $router;
-GLOBAL $view;
 
 use app\requests\MiddlewareStack;
 use app\requests\Request;
 use app\requests\Response;
 
+$container = \app\services\Container::getInstance();
 $request = new Request();
 $response = new Response();
 $middlewareStack = new MiddlewareStack();
+
+$router = $container->get('router');
+$view = $container->get('view');
 
 $router->add('/',function() use ($view){
     $controller = new \app\controllers\HomeController($view);

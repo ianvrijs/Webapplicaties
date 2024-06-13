@@ -5,6 +5,18 @@ use Exception;
 class Container
 {
     protected array $instances = [];
+    private static ?Container $instance = null;
+
+    private function __construct() {}
+
+    public static function getInstance(): Container
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
 
     public function set(string $abstract, $concrete = null)
     {

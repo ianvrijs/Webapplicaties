@@ -1,6 +1,9 @@
 <?php
 
-namespace app\requests;
+namespace app\middleware;
+
+use app\requests\Request;
+use app\requests\Response;
 
 class MiddlewareStack
 {

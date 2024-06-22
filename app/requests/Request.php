@@ -15,4 +15,9 @@ class Request
     {
         return $this->uri;
     }
+
+    public function get($key)
+    {
+        return $_REQUEST[$key] ?? null;
+    }
 }

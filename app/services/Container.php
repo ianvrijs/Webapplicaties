@@ -2,6 +2,11 @@
 namespace app\services;
 
 use app\controllers\AuthController;
+use app\controllers\CardController;
+use app\controllers\DeckController;
+use app\controllers\HomeController;
+use app\controllers\TestController;
+use app\controllers\UserController;
 use app\database\Database;
 use app\middleware\AuthenticationMiddleware;
 use app\services\AuthService;
@@ -23,14 +28,35 @@ class Container
             UserService::class => function($container) {
                 return new UserService($container->get(Database::class));
             },
+            SessionManager::class => function() {
+                return new SessionManager();
+            },
             AuthService::class => function($container) {
-                return new AuthService($container->get(UserService::class));
+                return new AuthService($container->get(UserService::class), $container->get(SessionManager::class));
             },
             AuthenticationMiddleware::class => function($container) {
                 return new AuthenticationMiddleware($container->get(AuthService::class));
             },
             AuthController::class => function($container) {
                 return new AuthController($container->get(AuthService::class), $container->get('view'));
+            },
+            CardController::class=> function($container){
+                return new CardController($container->get('view'), $container->get(SessionManager::class));
+            },
+            HomeController::class => function($container) {
+                return new HomeController($container->get('view'));
+            },
+            TestController::class => function($container) {
+                return new TestController($container->get('view'));
+            },
+            UserController::class => function($container) {
+                return new UserController($container->get('view'), $container);
+            },
+            DeckService::class => function($container) {
+                return new DeckService($container->get(Database::class));
+            },
+            DeckController::class => function($container) {
+                return new DeckController($container->get(DeckService::class), $container->get('view'));
             },
         ];
     }

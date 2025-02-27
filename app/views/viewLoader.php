@@ -26,7 +26,7 @@ class ViewLoader{
     }
 
     public function load($viewName, $data = [], $stylesheets = []) {
-        $stylesheets = $this->getAllStylesheets(); // No need to pass $stylesheets here
+        $stylesheets = $this->getAllStylesheets();
         $data['stylesheets'] = $this->loadStylesheets($stylesheets);
         extract($data);
         ob_start();

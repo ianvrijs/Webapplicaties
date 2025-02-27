@@ -36,4 +36,15 @@ class UserService
 
         return $stmt->rowCount() > 0;
     }
+    public function getUserById($userId)
+    {
+        $db = new Database();
+        $connection = $db->getConnection();
+
+        $stmt = $connection->prepare('SELECT * FROM users WHERE id = :id');
+        $stmt->bindParam(':id', $userId);
+        $stmt->execute();
+
+        return $stmt->fetchObject('app\database\models\User');
+    }
 }

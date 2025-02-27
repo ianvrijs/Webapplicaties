@@ -7,21 +7,19 @@ use app\database\models\User;
 class AuthService
 {
     private UserService $userService;
+    private SessionManager $sessionManager;
 
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, SessionManager $sessionManager)
     {
         $this->userService = $userService;
+        $this->sessionManager = $sessionManager;
     }
 
     public function login($usernameOrEmail, $password)
     {
-        // Fetch the user from the database using the provided username or email
         $user = $this->userService->getUserByUsernameOrEmail($usernameOrEmail);
-
-        // Verify the provided password with the user's hashed password
         if (password_verify($password, $user['password'])) {
-            // Store the user's ID in the session to keep them logged in
-            $_SESSION['user_id'] = $user['id'];
+            $this->sessionManager->set('user_id', $user['id']);
             return true;
         }
 
@@ -35,13 +33,11 @@ class AuthService
 
     public function logout()
     {
-        // Remove the user's ID from the session to log them out
-        unset($_SESSION['user_id']);
+        $this->sessionManager->remove('user_id');
     }
 
     public function isLoggedIn()
     {
-        // Check if the user's ID is stored in the session
-        return isset($_SESSION['user_id']);
+        return $this->sessionManager->exists('user_id');
     }
 }

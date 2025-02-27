@@ -26,6 +26,24 @@ nav ul li a{
     display: inline;
     text-decoration: none;
 }
+nav ul li form {
+    display: inline;
+}
+
+nav ul li form input[type="submit"] {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    padding-left: 20px;
+    margin: 0;
+    color: white;
+    display: inline;
+    text-decoration: none;
+}
+
 
 /*Footer*/
 

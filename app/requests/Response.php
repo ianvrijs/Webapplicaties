@@ -1,27 +1,35 @@
 <?php
+
 namespace app\requests;
 
 class Response
 {
-    private $content;
+    private $status = 200;
+    private $body = '';
 
-    public function __construct($content = '')
+    public function setStatus($status)
     {
-        $this->content = $content;
+        $this->status = $status;
     }
 
-    public function setContent($content)
+    public function setBody($body)
     {
-        $this->content = $content;
+        $this->body = $body;
     }
 
-    public function getContent()
+    public function getStatus()
     {
-        return $this->content;
+        return $this->status;
+    }
+
+    public function getBody()
+    {
+        return $this->body;
     }
 
     public function send()
     {
-        echo $this->content;
+        http_response_code($this->status);
+        echo $this->body;
     }
 }

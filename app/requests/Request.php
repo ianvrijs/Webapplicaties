@@ -20,4 +20,9 @@ class Request
     {
         return $_REQUEST[$key] ?? null;
     }
+
+    public function post($key)
+    {
+        return $_POST[$key] ?? null;
+    }
 }
